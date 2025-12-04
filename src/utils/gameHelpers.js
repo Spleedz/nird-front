@@ -16,11 +16,31 @@ export const getGameDimensions = () => {
   };
 };
 
-export const getRandomFood = (width, height, cell) => {
-  return {
-    x: Math.floor(Math.random() * (width / cell)) * cell,
-    y: Math.floor(Math.random() * (height / cell)) * cell,
-  };
+export const getRandomFood = (width, height, cell, obstacles = []) => {
+  let x, y;
+  let attempts = 0;
+
+  do {
+    x = Math.floor(Math.random() * (width / cell)) * cell;
+    y = Math.floor(Math.random() * (height / cell)) * cell;
+    attempts++;
+
+    // Vérifier si la nourriture est dans un obstacle
+    const inObstacle = obstacles.some(obstacle => {
+      return (
+        x >= obstacle.x &&
+        x < obstacle.x + obstacle.width &&
+        y >= obstacle.y &&
+        y < obstacle.y + obstacle.height
+      );
+    });
+
+    if (!inObstacle) {
+      break;
+    }
+  } while (attempts < 100);
+
+  return { x, y };
 };
 
 export const shouldInvertControls = (score) => {

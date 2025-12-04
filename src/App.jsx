@@ -27,10 +27,11 @@ export default function App() {
   const [gameStarted, setGameStarted] = useState(false);
   const [difficulty, setDifficulty] = useState(null);
   const [obstacles, setObstacles] = useState([]);
+  const [gameRunning, setGameRunning] = useState(false);
 
   // Refs pour la direction
-  const directionRef = useRef({ x: cell, y: 0 });
-  const nextDirectionRef = useRef({ x: cell, y: 0 });
+  const directionRef = useRef({ x: 0, y: 0 });
+  const nextDirectionRef = useRef({ x: 0, y: 0 });
 
   // Supprimer les marges par défaut du body
   useEffect(() => {
@@ -62,6 +63,16 @@ export default function App() {
     }
   }, [score, difficulty]);
 
+  // Retourner à l'écran de démarrage après Game Over
+  useEffect(() => {
+    if (isGameOver) {
+      const timer = setTimeout(() => {
+        backToStart();
+      }, 2000); // Attendre 2 secondes avant de retourner
+      return () => clearTimeout(timer);
+    }
+  }, [isGameOver]);
+
   // Gestion des touches
   useEffect(() => {
     if (!gameStarted) return;
@@ -78,23 +89,35 @@ export default function App() {
 
       switch (key) {
         case "ArrowUp":
-          if (currentDir.y === 0) {
+          if (currentDir.y === 0 && !(currentDir.x === 0 && currentDir.y === 0)) {
             nextDirectionRef.current = { x: 0, y: -cell };
+          } else if (currentDir.x === 0 && currentDir.y === 0) {
+            nextDirectionRef.current = { x: 0, y: -cell };
+            setGameRunning(true);
           }
           break;
         case "ArrowDown":
-          if (currentDir.y === 0) {
+          if (currentDir.y === 0 && !(currentDir.x === 0 && currentDir.y === 0)) {
             nextDirectionRef.current = { x: 0, y: cell };
+          } else if (currentDir.x === 0 && currentDir.y === 0) {
+            nextDirectionRef.current = { x: 0, y: cell };
+            setGameRunning(true);
           }
           break;
         case "ArrowLeft":
-          if (currentDir.x === 0) {
+          if (currentDir.x === 0 && !(currentDir.x === 0 && currentDir.y === 0)) {
             nextDirectionRef.current = { x: -cell, y: 0 };
+          } else if (currentDir.x === 0 && currentDir.y === 0) {
+            nextDirectionRef.current = { x: -cell, y: 0 };
+            setGameRunning(true);
           }
           break;
         case "ArrowRight":
-          if (currentDir.x === 0) {
+          if (currentDir.x === 0 && !(currentDir.x === 0 && currentDir.y === 0)) {
             nextDirectionRef.current = { x: cell, y: 0 };
+          } else if (currentDir.x === 0 && currentDir.y === 0) {
+            nextDirectionRef.current = { x: cell, y: 0 };
+            setGameRunning(true);
           }
           break;
       }
@@ -105,7 +128,7 @@ export default function App() {
 
   // Boucle de jeu
   useEffect(() => {
-    if (!gameStarted || isGameOver || !difficulty) return;
+    if (!gameStarted || !gameRunning || isGameOver || !difficulty) return;
 
     const difficultyConfig = DIFFICULTY_MODES[difficulty];
     const gameSpeed = invertedControls
@@ -160,7 +183,7 @@ export default function App() {
 
         // Manger la nourriture
         if (head.x === food.x && head.y === food.y) {
-          setFood(getRandomFood(width, height, cell));
+          setFood(getRandomFood(width, height, cell, obstacles));
           setScore((s) => s + 1);
         } else {
           newSnake.pop();
@@ -180,6 +203,7 @@ export default function App() {
     cell,
     invertedControls,
     gameStarted,
+    gameRunning,
     difficulty,
     obstacles,
   ]);
@@ -187,18 +211,19 @@ export default function App() {
   const startGame = (selectedDifficulty) => {
     setDifficulty(selectedDifficulty);
     setGameStarted(true);
+    setGameRunning(false);
     setSnake([{ x: 100, y: 100 }]);
-    directionRef.current = { x: cell, y: 0 };
-    nextDirectionRef.current = { x: cell, y: 0 };
-    setFood(getRandomFood(width, height, cell));
+    directionRef.current = { x: 0, y: 0 };
+    nextDirectionRef.current = { x: 0, y: 0 };
     setScore(0);
     setInvertedControls(false);
     setIsGameOver(false);
 
     // Générer les obstacles si le mode en a
     const difficultyConfig = DIFFICULTY_MODES[selectedDifficulty];
+    let newObstacles = [];
     if (difficultyConfig.hasObstacles) {
-      const newObstacles = generateObstacles(
+      newObstacles = generateObstacles(
         width,
         height,
         cell,
@@ -209,16 +234,22 @@ export default function App() {
     } else {
       setObstacles([]);
     }
+
+    // Générer la nourriture en évitant les obstacles
+    setFood(getRandomFood(width, height, cell, newObstacles));
   };
 
-  const restart = () => {
-    setSnake([{ x: 100, y: 100 }]);
-    directionRef.current = { x: cell, y: 0 };
-    nextDirectionRef.current = { x: cell, y: 0 };
-    setFood(getRandomFood(width, height, cell));
-    setScore(0);
-    setInvertedControls(false);
+  const backToStart = () => {
+    setGameStarted(false);
+    setGameRunning(false);
     setIsGameOver(false);
+    setSnake([{ x: 100, y: 100 }]);
+    setScore(0);
+    setObstacles([]);
+    setDifficulty(null);
+    setInvertedControls(false);
+    directionRef.current = { x: 0, y: 0 };
+    nextDirectionRef.current = { x: 0, y: 0 };
   };
 
   return (
@@ -246,26 +277,21 @@ export default function App() {
           <GameHeader score={score} invertedControls={invertedControls} />
 
           {isGameOver && (
-            <button
-              onClick={restart}
+            <div
               style={{
                 marginBottom: "15px",
-                padding: "12px 30px",
-                fontSize: "16px",
+                padding: "20px 40px",
+                fontSize: "clamp(1.5rem, 5vw, 2rem)",
                 fontWeight: "bold",
                 color: "white",
-                background: "#ff6b6b",
-                border: "none",
-                borderRadius: "25px",
-                cursor: "pointer",
-                boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
-                transition: "transform 0.2s",
+                background: "rgba(255, 107, 107, 0.9)",
+                borderRadius: "15px",
+                boxShadow: "0 6px 20px rgba(255,107,107,0.4)",
+                animation: "pulse 1s infinite",
               }}
-              onMouseEnter={(e) => (e.target.style.transform = "scale(1.05)")}
-              onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
             >
-              Recommencer
-            </button>
+              💀 GAME OVER 💀
+            </div>
           )}
 
           <GameBoard
