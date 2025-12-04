@@ -41,7 +41,7 @@ const VillageMap = () => {
 
       {/* Fond avec image du village */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-contain bg-center bg-no-repeat"
         style={{
           backgroundImage: `url(${villageImage})`,
           backgroundAttachment: 'fixed'
