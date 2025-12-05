@@ -78,12 +78,12 @@ export const COLORS = {
 
   // 🐍 Snake
   snakeHead:
-    "linear-gradient(135deg, #ff00ff, #ff00ff)", // Tête neon bleue
-  snakeHeadGlow: "0 0 12px rgba(13, 0, 255, 0.9)",
+    "linear-gradient(135deg, #ff69b4, #ff1493)", // Tête rose neon
+  snakeHeadGlow: "0 0 12px rgba(255, 105, 180, 0.9)",
 
   snakeBody:
-    "linear-gradient(135deg, #620065, #620271)", // Corps plus sombre
-  snakeBodyGlow: "0 0 8px rgba(157, 0, 255, 0.5)",
+    "linear-gradient(135deg, #ff69b4, #ff1493)", // Corps rose
+  snakeBodyGlow: "0 0 8px rgba(255, 105, 180, 0.5)",
 
   // 🍎 Nourriture (pulsation radioactive)
   food:

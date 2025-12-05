@@ -19,7 +19,7 @@ export default function SnakeGame() {
   const [cell] = useState(20);
 
   // État du jeu
-  const [snake, setSnake] = useState([{ x: 100, y: 100 }]);
+  const [snake, setSnake] = useState([{ x: 100, y: 100 }, { x: 80, y: 100 }]);
   const [food, setFood] = useState({ x: 200, y: 200 });
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
@@ -212,7 +212,7 @@ export default function SnakeGame() {
     setDifficulty(selectedDifficulty);
     setGameStarted(true);
     setGameRunning(false);
-    setSnake([{ x: 100, y: 100 }]);
+    setSnake([{ x: 100, y: 100 }, { x: 80, y: 100 }]);
     directionRef.current = { x: 0, y: 0 };
     nextDirectionRef.current = { x: 0, y: 0 };
     setScore(0);
@@ -243,7 +243,7 @@ export default function SnakeGame() {
     setGameStarted(false);
     setGameRunning(false);
     setIsGameOver(false);
-    setSnake([{ x: 100, y: 100 }]);
+    setSnake([{ x: 100, y: 100 }, { x: 80, y: 100 }]);
     setScore(0);
     setObstacles([]);
     setDifficulty(null);
