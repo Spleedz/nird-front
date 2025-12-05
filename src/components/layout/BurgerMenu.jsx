@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import MissionDrawer from './MissionDrawer';
+import PixelArtPage from '../PixelArtPage';
+import RetroPage from '../RetroPage';
 
 /**
  * Bouton burger en haut à droite
@@ -8,6 +10,8 @@ import MissionDrawer from './MissionDrawer';
  */
 const BurgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showPixelArt, setShowPixelArt] = useState(false);
+  const [showRetroPage, setShowRetroPage] = useState(false);
 
   return (
     <>
@@ -36,7 +40,45 @@ const BurgerMenu = () => {
       </button>
 
       {/* Drawer missions */}
-      {isOpen && <MissionDrawer onClose={() => setIsOpen(false)} />}
+      {isOpen && (
+        <MissionDrawer 
+          onClose={() => setIsOpen(false)} 
+          onOpenPixelArt={() => {
+            setShowPixelArt(true);
+            setIsOpen(false);
+          }}
+          onOpenRetroPage={() => {
+            setShowRetroPage(true);
+            setIsOpen(false);
+          }}
+        />
+      )}
+
+      {/* Modal PixelArt */}
+      {showPixelArt && (
+        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 overflow-auto">
+          <button
+            onClick={() => setShowPixelArt(false)}
+            className="fixed top-4 right-4 z-[60] bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-all transform hover:scale-110 shadow-lg"
+          >
+            ✕ Fermer
+          </button>
+          <PixelArtPage />
+        </div>
+      )}
+
+      {/* Modal Page Rétro */}
+      {showRetroPage && (
+        <div className="fixed inset-0 bg-white z-50 overflow-auto">
+          <button
+            onClick={() => setShowRetroPage(false)}
+            className="fixed top-4 right-4 z-[60] bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-all transform hover:scale-110 shadow-lg"
+          >
+            ✕ Fermer
+          </button>
+          <RetroPage />
+        </div>
+      )}
     </>
   );
 };

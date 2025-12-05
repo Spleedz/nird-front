@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 /**
  * Drawer latéral affichant les missions disponibles
  */
-const MissionDrawer = ({ onClose }) => {
+const MissionDrawer = ({ onClose, onOpenPixelArt, onOpenRetroPage }) => {
   const navigate = useNavigate();
 
   const handleMissionClick = (path) => {
@@ -49,6 +49,44 @@ const MissionDrawer = ({ onClose }) => {
                 </h3>
                 <p className="text-sm text-slate-600 mt-1">
                   Liste des missions et équipes inscrites
+                </p>
+              </div>
+              <span className="text-2xl">→</span>
+            </div>
+          </button>
+
+          {/* Pixel Art Page */}
+          <button
+            onClick={onOpenPixelArt}
+            className="w-full text-left bg-white hover:bg-yellow-50 border-2 border-yellow-400 hover:border-yellow-600 p-4 rounded-lg transition-all transform hover:scale-105 group"
+          >
+            <div className="flex items-start gap-3">
+              <span className="text-3xl">🎮</span>
+              <div className="flex-1">
+                <h3 className="font-bold text-lg text-slate-900 group-hover:text-yellow-700">
+                  Pixel Art RPG
+                </h3>
+                <p className="text-sm text-slate-600 mt-1">
+                  Mini-jeu RPG rétro
+                </p>
+              </div>
+              <span className="text-2xl">→</span>
+            </div>
+          </button>
+
+          {/* Page Rétro */}
+          <button
+            onClick={onOpenRetroPage}
+            className="w-full text-left bg-white hover:bg-yellow-50 border-2 border-yellow-400 hover:border-yellow-600 p-4 rounded-lg transition-all transform hover:scale-105 group"
+          >
+            <div className="flex items-start gap-3">
+              <span className="text-3xl">🕰️</span>
+              <div className="flex-1">
+                <h3 className="font-bold text-lg text-slate-900 group-hover:text-yellow-700">
+                  Page Rétro
+                </h3>
+                <p className="text-sm text-slate-600 mt-1">
+                  Version HTML à l'ancienne
                 </p>
               </div>
               <span className="text-2xl">→</span>

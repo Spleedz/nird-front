@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SnakeGame from './SnakeGame';
 
 export default function App() {
   const [hp, setHp] = useState(100);
@@ -10,6 +11,7 @@ export default function App() {
   const [showSnake, setShowSnake] = useState(false);
   const [konamiCode, setKonamiCode] = useState([]);
   const [showShop, setShowShop] = useState(false);
+  const [showSnakeGame, setShowSnakeGame] = useState(false);
   const [maxHp, setMaxHp] = useState(100);
   const [maxMana, setMaxMana] = useState(100);
   const [stamina, setStamina] = useState(100);
@@ -1127,6 +1129,32 @@ body {
           </div>
         </div>
 
+        {/* Petit serpent caché */}
+        <div 
+          onClick={() => setShowSnakeGame(true)}
+          style={{
+            position: 'fixed',
+            bottom: '10px',
+            left: '10px',
+            fontSize: '16px',
+            cursor: 'pointer',
+            opacity: 0.3,
+            transition: 'all 0.3s',
+            zIndex: 100
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'scale(1.5)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.opacity = '0.3';
+            e.target.style.transform = 'scale(1)';
+          }}
+          title="Un serpent mystérieux..."
+        >
+          🐍
+        </div>
+
         {showShop && (
           <div className="shop-overlay">
             <div className="shop-container">
@@ -1150,6 +1178,52 @@ body {
                 ❌ FERMER MAGASIN
               </button>
             </div>
+          </div>
+        )}
+
+        {/* Snake Game Overlay */}
+        {showSnakeGame && (
+          <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+            zIndex: 1000,
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+            <button
+              onClick={() => setShowSnakeGame(false)}
+              style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                padding: '10px 20px',
+                fontSize: '16px',
+                fontWeight: 'bold',
+                backgroundColor: '#ff4444',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                zIndex: 1001,
+                boxShadow: '0 4px 8px rgba(0,0,0,0.3)',
+                transition: 'all 0.3s'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = '#cc0000';
+                e.target.style.transform = 'scale(1.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = '#ff4444';
+                e.target.style.transform = 'scale(1)';
+              }}
+            >
+              ← Retour
+            </button>
+            <SnakeGame />
           </div>
         )}
       </div>

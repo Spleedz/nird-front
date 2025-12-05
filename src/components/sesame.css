@@ -1,0 +1,265 @@
+/* Import d'une police "Fantaisie" */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&display=swap');
+
+/* RESET FULL SCREEN */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #0a0a0a;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23d4af37" d="M7.539 19.538l-2.885-3.692 3.692-2.885-3.692-2.884 2.885-3.693-3.693-2.884 3.693-2.885 2.884 3.692 2.885-3.692 3.692 2.885-3.692 2.884 2.885 3.693-3.693 2.884 3.693 2.885-3.693 2.884-2.885-3.692-2.884 3.692z"/></svg>') 12 12, auto; /* Curseur épée/étoile doré optionnel */
+}
+
+.medieval-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: #1a120b; /* Marron très foncé */
+  color: #d4af37; /* Or antique */
+  font-family: 'Cinzel', serif;
+  user-select: none;
+}
+
+/* --- BACKGROUND FX --- */
+.dungeon-bg {
+  position: absolute;
+  inset: 0;
+  /* Texture de mur de pierre simulée */
+  background-image: radial-gradient(circle at 50% 50%, transparent 0%, #000 80%),
+                    url('https://www.transparenttextures.com/patterns/black-felt.png'); /* Texture subtile */
+  background-color: #2c1e14;
+  z-index: 0;
+}
+
+.magic-particles {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, #4a69bd 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.2;
+  animation: floatMagic 10s infinite linear;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes floatMagic {
+  from { transform: translateY(0); }
+  to { transform: translateY(-60px); }
+}
+
+/* --- HUD PARCHEMIN --- */
+.scroll-header {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  text-align: center;
+  background: url('https://www.transparenttextures.com/patterns/aged-paper.png'), linear-gradient(to right, #c0a060, #e6c990, #c0a060);
+  padding: 15px 40px;
+  border-radius: 5px;
+  border: 4px solid #5c4033;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 0 20px rgba(92, 64, 51, 0.5);
+  pointer-events: none;
+}
+.scroll-title {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.8rem;
+  color: #3d2b1f;
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.2);
+  margin-bottom: 5px;
+}
+.scroll-status {
+  font-size: 1.1rem;
+  color: #7a1f1f; /* Rouge sang foncé */
+  font-weight: bold;
+}
+
+/* --- STAGE LAYER COMMUN --- */
+.stage-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- STAGE 1 : RÉVÉLATION (Brouillard et Rune) --- */
+.fog-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 20%, #000 90%);
+  backdrop-filter: blur(15px) brightness(0.5);
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.hidden-rune {
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rune-glow {
+  position: absolute;
+  width: 150px; height: 150px;
+  background: radial-gradient(circle, rgba(100, 200, 255, 0.6) 0%, transparent 70%);
+  animation: pulseMagic 2s infinite;
+}
+.rune-symbol {
+  font-size: 5rem;
+  color: #fff;
+  text-shadow: 0 0 20px #00eaff, 0 0 40px #00eaff;
+  z-index: 2;
+}
+
+.wisp-cursor {
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+.wisp-core {
+  width: 20px; height: 20px;
+  background: #ffd700;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #ffd700, 0 0 40px #ff8c00;
+  animation: wispMove 1s infinite alternate ease-in-out;
+}
+.resonance-text {
+  position: absolute;
+  top: 30px; left: 20px;
+  white-space: nowrap;
+  font-weight: bold;
+  text-shadow: 0 0 5px #000;
+}
+
+@keyframes wispMove { from { transform: translateY(-5px); } to { transform: translateY(5px); } }
+@keyframes pulseMagic { 0% { opacity: 0.5; scale: 0.9; } 100% { opacity: 1; scale: 1.1; } }
+
+
+/* --- STAGE 2 : MÉMOIRE DE PIERRE --- */
+.stone-tablet-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 30px;
+  background: url('https://www.transparenttextures.com/patterns/stone-wall.png'), #3a3a3a;
+  border: 8px solid #5c4033;
+  border-radius: 10px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+}
+.stone-rune {
+  width: 70px; height: 70px;
+  background: #2a2a2a;
+  border: 3px inset #1a1a1a;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex; justify-content: center; align-items: center;
+  font-family: 'MedievalSharp'; color: #444; font-size: 0.8rem;
+  transition: all 0.3s;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+.stone-rune:hover {
+  border-color: #d4af37;
+  color: #d4af37;
+}
+/* Quand l'ordi montre le motif */
+.stone-rune.active-magic {
+  background: #1e3c5e;
+  color: #89cff0;
+  border-color: #89cff0;
+  box-shadow: 0 0 30px #89cff0, inset 0 0 20px #89cff0;
+  text-shadow: 0 0 10px #fff;
+}
+/* Quand le joueur clique bon */
+.stone-rune.user-activated {
+  background: #3e2723;
+  color: #ff8c00;
+  border-color: #ff8c00;
+  box-shadow: 0 0 20px #ff8c00;
+}
+
+.rumble { animation: rumble 0.5s; }
+@keyframes rumble {
+  0% { transform: translate(0, 0); }
+  10%, 30%, 50%, 70%, 90% { transform: translate(-5px, 3px); }
+  20%, 40%, 60%, 80% { transform: translate(5px, -3px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* --- STAGE 3 : MÉCANISME CÉLESTE --- */
+.mechanism-container {
+  position: relative;
+  width: 350px; height: 350px;
+  /* Cadran en laiton et pierre */
+  background: radial-gradient(circle at center, #2c1e14 40%, #5c4033 70%);
+  border-radius: 50%;
+  border: 15px solid #8c7b50; /* Laiton vieilli */
+  box-shadow: 0 10px 50px rgba(0,0,0,0.6), inset 0 0 30px rgba(0,0,0,0.8);
+  display: flex; justify-content: center; align-items: center;
+}
+
+/* Le socle cible en haut */
+.mechanism-target {
+  position: absolute;
+  top: -25px;
+  width: 40px; height: 60px;
+  background: #d4af37;
+  border: 3px solid #3d2b1f;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 100%, 0 100%, 0 25%); /* Forme de joyau/socle */
+  z-index: 2;
+  box-shadow: 0 0 20px #d4af37;
+}
+
+/* L'engrenage qui tourne */
+.mechanism-gear {
+  position: absolute;
+  width: 90%; height: 90%;
+  border-radius: 50%;
+  border: 5px dashed #a67c00; /* Dents de l'engrenage simulées */
+  /* Pas de transition pour la rotation fluide via JS */
+}
+
+/* Le joyau sur l'engrenage */
+.gear-jewel {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px; height: 30px;
+  background: radial-gradient(circle at 30% 30%, #fff, #00eaff);
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow: 0 0 30px #00eaff, inset 0 0 10px #fff;
+}
+
+.mechanism-info {
+  font-size: 4rem; color: rgba(212, 175, 55, 0.3); font-family: 'MedievalSharp'; z-index: 0;
+}
+.parchment-hint { margin-top: 30px; color: #e6c990; font-style: italic; }
+.flash-fail { animation: flashDarkRed 0.3s; }
+@keyframes flashDarkRed { 0% { background: rgba(100, 0, 0, 0.5); } 100% { background: transparent; } }
+
+/* --- STAGE 4 : TRÉSOR --- */
+.treasure-anim h1 {
+  font-family: 'MedievalSharp';
+  font-size: 4rem; color: #ffd700;
+  text-shadow: 2px 2px 0 #3d2b1f, 0 0 50px #ffd700;
+  animation: textPop 1s forwards;
+}
+.treasure-chest {
+    width: 100px; height: 100px;
+    margin-top: 30px;
+    background: url('https://img.icons8.com/emoji/96/000000/locked-with-key-emoji.png') no-repeat center; /* Simple icône pour l'exemple */
+    background-size: contain;
+    filter: drop-shadow(0 0 20px gold);
+    animation: chestOpen 2s forwards 0.5s;
+}
+
+@keyframes textPop { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
