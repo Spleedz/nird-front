@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // src/App.jsx
 import React, { useState, useEffect } from 'react';
 import { RoleProvider } from './contexts/RoleContext';
@@ -29,6 +30,15 @@ function App() {
       </MissionsProvider>
     </RoleProvider>
   );
+=======
+// App.jsx
+import React from 'react';
+import "./App.css";
+import PixelArtPage from "./PixelArtPage";
+
+function App() {
+  return <PixelArtPage />;
+>>>>>>> origin/PixelART
 }
 
 export default App;
