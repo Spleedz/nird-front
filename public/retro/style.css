@@ -1,0 +1,523 @@
+/* ==========================================
+   NIRD - Le Village Numérique Résistant
+   Style Années 2000 Authentique - CSS2.1
+   ========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Comic Sans MS", Arial, Verdana, sans-serif;
+    font-size: 12px;
+    background-color: #CCCCCC;
+    color: #000000;
+}
+
+/* ==========================================
+   LAYOUT TABLE (style années 2000)
+   ========================================== */
+#main-layout {
+    width: 100%;
+    height: 100%;
+}
+
+#sidebar-left {
+    width: 200px;
+    background-color: #006633;
+    border-right: 5px ridge #FFD700;
+}
+
+#main-column {
+    background-color: #FFFFFF;
+    padding: 0;
+}
+
+/* ==========================================
+   SIDEBAR GAUCHE
+   ========================================== */
+.sidebar-section {
+    background-color: #006633;
+    border-bottom: 3px solid #004422;
+    padding: 15px 10px;
+}
+
+.sidebar-section h3 {
+    color: #FFFF00;
+    font-size: 14px;
+    font-family: Impact, sans-serif;
+    margin-bottom: 10px;
+    text-align: center;
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 5px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin: 5px 0;
+}
+
+.sidebar-menu a {
+    display: block;
+    padding: 8px 10px;
+    color: #FFFF00;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #004422;
+    border: 2px outset #FFD700;
+}
+
+.sidebar-menu a:hover {
+    background-color: #FFFF00;
+    color: #006633;
+    border-style: inset;
+}
+
+/* ==========================================
+   HEADER
+   ========================================== */
+#header {
+    background-color: #006633;
+    padding: 25px 0;
+    border-bottom: 5px ridge #FFD700;
+    border-top: 3px solid #FFD700;
+}
+
+#header h1 {
+    color: #FFFF00;
+    font-size: 38px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 4px;
+    font-family: Impact, "Arial Black", sans-serif;
+}
+
+#header .subtitle {
+    color: #00FF00;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 12px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* ==========================================
+   MARQUEE
+   ========================================== */
+#marquee-container {
+    background-color: #FF0000;
+    padding: 10px 0;
+    border-top: 3px solid #FFFF00;
+    border-bottom: 3px solid #FFFF00;
+}
+
+#marquee-container marquee {
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* ==========================================
+   WEBRING
+   ========================================== */
+#webring {
+    background-color: #000000;
+    color: #00FF00;
+    padding: 12px;
+    margin: 15px;
+    border: 3px ridge #00FF00;
+    text-align: center;
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+}
+
+#webring a {
+    color: #00FFFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#webring a:hover {
+    color: #FFFF00;
+}
+
+/* ==========================================
+   BANNIÈRE
+   ========================================== */
+#banner {
+    background-color: #FFFFCC;
+    border: 5px ridge #FF6600;
+    padding: 18px;
+    margin: 15px;
+    text-align: center;
+}
+
+#banner h2 {
+    color: #CC0000;
+    font-size: 22px;
+    margin-bottom: 12px;
+    font-family: Impact, sans-serif;
+}
+
+#banner p {
+    color: #000099;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* ==========================================
+   NAVIGATION
+   ========================================== */
+#navigation {
+    background-color: #99FF99;
+    border-bottom: 3px solid #006633;
+    border-top: 3px solid #CCFFCC;
+    padding: 8px 0;
+    margin: 0 15px;
+}
+
+#menu {
+    list-style-type: none;
+    text-align: center;
+    padding: 12px 0;
+}
+
+#menu li {
+    display: inline;
+    margin: 0 6px;
+}
+
+#menu a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 12px 22px;
+    background-color: #CCFFCC;
+    border: 3px outset #99FF99;
+    display: inline-block;
+    font-size: 13px;
+}
+
+#menu a:hover {
+    background-color: #FFFFFF;
+    color: #FF0000;
+    border-style: inset;
+}
+
+/* ==========================================
+   BEST VIEWED WITH
+   ========================================== */
+#best-viewed {
+    text-align: center;
+    padding: 12px;
+    background-color: #E0E0E0;
+    border: 3px groove #999999;
+    margin: 15px;
+    font-size: 11px;
+}
+
+/* ==========================================
+   HERO
+   ========================================== */
+#hero {
+    background-color: #E6FFE6;
+    border: 5px ridge #006633;
+    padding: 25px;
+    margin: 20px 15px;
+}
+
+#hero h2 {
+    color: #006633;
+    font-size: 24px;
+    margin-bottom: 18px;
+    text-align:center;
+border-bottom: 3px double #FFD700;
+padding-bottom: 12px;
+font-family: Impact, sans-serif;
+}
+/* ==========================================
+BOXES
+========================================== */
+.info-box {
+background-color: #CCE5FF;
+border: 4px ridge #0066CC;
+padding: 18px;
+margin: 15px 0;
+}
+.info-box h3 {
+color: #0066CC;
+font-size: 18px;
+margin-bottom: 12px;
+border-bottom: 2px dotted #0066CC;
+padding-bottom: 8px;
+font-family: Impact, sans-serif;
+}
+.warning-box {
+background-color: #FFCCCC;
+border: 4px ridge #CC0000;
+padding: 18px;
+margin: 15px 0;
+}
+.warning-box h3 {
+color: #CC0000;
+font-size: 18px;
+margin-bottom: 12px;
+font-family: Impact, sans-serif;
+}
+.warning-box p {
+margin-bottom: 10px;
+font-weight: bold;
+}
+.success-box {
+background-color: #CCFFCC;
+border: 4px ridge #009900;
+padding: 18px;
+margin: 15px 0;
+}
+.success-box h3 {
+color: #009900;
+font-size: 18px;
+margin-bottom: 12px;
+font-family: Impact, sans-serif;
+}
+/* ==========================================
+LAYOUT
+========================================== */
+#main-content {
+margin: 20px 15px;
+}
+.column-left {
+float: left;
+width: 48%;
+margin-right: 2%;
+}
+.column-right {
+float: left;
+width: 48%;
+}
+.clear {
+clear: both;
+}
+/* ==========================================
+SECTIONS
+========================================== */
+.section {
+background-color: #F5F5F5;
+border: 4px groove #999999;
+padding: 22px;
+margin-bottom: 20px;
+}
+.section h3 {
+color: #006633;
+font-size: 20px;
+border-bottom: 3px double #FFD700;
+padding-bottom: 10px;
+margin-bottom: 18px;
+font-family: Impact, sans-serif;
+}
+.section p {
+line-height: 1.8;
+margin-bottom: 12px;
+}
+.section ul {
+margin-left: 30px;
+margin-top: 12px;
+}
+.section li {
+margin-bottom: 10px;
+line-height: 1.6;
+}
+/* ==========================================
+QUIZ
+========================================== */
+#quiz-section {
+background-color: #FFFFDD;
+border: 5px ridge #FF9900;
+padding: 25px;
+margin: 20px 0;
+}
+.quiz-question {
+margin-bottom: 25px;
+padding: 18px;
+background-color: #FFFFFF;
+border: 3px groove #CCCCCC;
+}
+.quiz-question h4 {
+color: #CC6600;
+margin-bottom: 12px;
+font-size: 15px;
+font-weight: bold;
+}
+.quiz-option {
+margin: 10px 0;
+padding: 12px;
+background-color: #F0F0F0;
+border: 3px outset #999999;
+cursor: pointer;
+}
+.quiz-option:hover {
+background-color: #FFFFCC;
+border-style: inset;
+}
+.quiz-option.correct {
+background-color: #CCFFCC;
+border: 3px solid #009900;
+font-weight: bold;
+}
+.quiz-option.incorrect {
+background-color: #FFCCCC;
+border: 3px solid #CC0000;
+}
+/* ==========================================
+BOUTONS
+========================================== */
+.button-2000 {
+background-color: #CCCCCC;
+border: 3px outset #999999;
+padding: 12px 28px;
+cursor: pointer;
+font-weight: bold;
+color: #000000;
+text-decoration: none;
+display: inline-block;
+margin: 6px;
+font-size: 13px;
+}
+.button-2000:hover {
+background-color: #DDDDDD;
+}
+.button-2000:active {
+border-style: inset;
+}
+.button-green {
+background-color: #99CC99;
+border-color: #006633;
+}
+.button-blue {
+background-color: #99CCFF;
+border-color: #0066CC;
+}
+/* ==========================================
+TABLES
+========================================== */
+.data-table {
+width: 100%;
+border: 3px ridge #666666;
+background-color: #FFFFFF;
+margin: 18px 0;
+}
+.data-table td {
+padding: 12px;
+border: 1px solid #CCCCCC;
+}
+.data-table th {
+background-color: #006633;
+color: #FFFF00;
+padding: 12px;
+font-weight: bold;
+border: 1px solid #004422;
+}
+.data-table tr:hover {
+background-color: #FFFFCC;
+}
+/* ==========================================
+COMPTEURS
+========================================== */
+#counter {
+text-align: center;
+padding: 25px;
+background-color: #000000;
+color: #00FF00;
+font-family: "Courier New", monospace;
+font-size: 28px;
+border: 5px ridge #00FF00;
+margin: 20px 0;
+}
+#hit-counter {
+background-color: #0000CC;
+color: #FFFF00;
+padding: 12px;
+margin: 15px 0;
+border: 3px ridge #0000FF;
+text-align: center;
+font-weight: bold;
+font-size: 14px;
+}
+#visitor-info {
+background-color: #FFFFCC;
+border: 3px dashed #FF9900;
+padding: 15px;
+margin: 15px 0;
+text-align: center;
+font-size: 12px;
+}
+/* ==========================================
+FOOTER
+========================================== */
+#footer {
+background-color: #006633;
+color: #FFFFFF;
+text-align: center;
+padding: 25px;
+margin-top: 40px;
+border-top: 5px ridge #FFD700;
+}
+#footer p {
+font-size: 12px;
+margin: 8px 0;
+}
+#footer a {
+color: #FFFF99;
+text-decoration: underline;
+}
+#footer a:hover {
+color: #00FFFF;
+}
+/* ==========================================
+LIENS
+========================================== */
+a {
+color: #0000FF;
+}
+a:visited {
+color: #800080;
+}
+a:hover {
+color: #FF0000;
+text-decoration: none;
+}
+/* ==========================================
+BLINK
+========================================== */
+.blink {
+font-weight: bold;
+color: #FF0000;
+}
+/* ==========================================
+BADGES
+========================================== */
+.badge {
+display: inline-block;
+padding: 6px 14px;
+margin: 4px;
+background-color: #FF9900;
+color: #FFFFFF;
+font-weight: bold;
+border: 3px outset #CC6600;
+font-size: 11px;
+}
+.badge-green {
+background-color: #009900;
+border-color: #006600;
+}
+.badge-blue {
+background-color: #0066CC;
+border-color: #004499;
+}
