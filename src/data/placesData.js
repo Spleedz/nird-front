@@ -4,7 +4,7 @@ export const placesData = [
     name: 'L\'École',
     type: 'education',
     emoji: '🏫',
-    position: { top: '35%', left: '20%' },
+    position: { top: '40%', left: '32%' },
     descriptionProbleme: 'Dépendance totale à Google Workspace et Microsoft 365 pour les cours et devoirs.',
     pistesNIRD: [
       { pillar: 'responsabilite', text: 'Migrer vers Nextcloud + OnlyOffice pour le cloud collaboratif' },
@@ -19,7 +19,7 @@ export const placesData = [
     name: 'La Cantine',
     type: 'social',
     emoji: '🍽️',
-    position: { top: '45%', left: '65%' },
+    position: { top: '58%', left: '66.5%' },
     descriptionProbleme: 'Système de réservation propriétaire coûteux avec frais de transaction élevés.',
     pistesNIRD: [
       { pillar: 'durabilite', text: 'Solution open-source auto-hébergée sans frais cachés' },
@@ -34,7 +34,7 @@ export const placesData = [
     name: 'Bibliothèque NIRD',
     type: 'ressources',
     emoji: '📚',
-    position: { top: '55%', left: '75%' },
+    position: { top: '70%', left: '76%' },
     descriptionProbleme: 'Centre de ressources sur le numérique libre et responsable.',
     pistesNIRD: [
       { pillar: 'inclusion', text: 'Découvrir des logiciels libres accessibles à tous' },
@@ -50,7 +50,7 @@ export const placesData = [
     name: 'Salle Informatique',
     type: 'technique',
     emoji: '💻',
-    position: { top: '50%', left: '10%' },
+    position: { top: '60%', left: '20%' },
     descriptionProbleme: 'Ordinateurs obsolètes jetés alors qu\'ils pourraient revivre avec Linux.',
     pistesNIRD: [
       { pillar: 'durabilite', text: 'Installer des distributions légères (Ubuntu, Debian, Emmabuntüs)' },
@@ -65,7 +65,7 @@ export const placesData = [
     name: 'Administration',
     type: 'gestion',
     emoji: '🏛️',
-    position: { top: '55%', left: '35%' },
+    position: { top: '75%', left: '35%' },
     descriptionProbleme: 'Logiciels de gestion vie scolaire propriétaires avec vendor lock-in.',
     pistesNIRD: [
       { pillar: 'responsabilite', text: 'Adopter des solutions open-source type Pronote alternatives' },
@@ -77,10 +77,10 @@ export const placesData = [
   },
   {
     id: 'data-center',
-    name: 'Data Center Partagé',
+    name: 'Data Center',
     type: 'infrastructure',
     emoji: '🔌',
-    position: { top: '70%', left: '70%' },
+    position: { top: '45%', left: '45%' },
     descriptionProbleme: 'Chaque école loue son serveur cloud chez AWS/Azure de façon indépendante.',
     pistesNIRD: [
       { pillar: 'durabilite', text: 'Créer un data center mutualisé local alimenté en énergie verte' },
@@ -92,10 +92,10 @@ export const placesData = [
   },
   {
     id: 'big-tech',
-    name: 'Big Tech - Forteresse Numérique',
+    name: 'Big Tech',
     type: 'menace',
     emoji: '🏰',
-    position: { top: '20%', left: '75%' },
+    position: { top: '25%', left: '65%' },
     descriptionProbleme: 'Les géants du numérique (Google, Microsoft, Amazon) contrôlent nos données et imposent leurs services.',
     pistesNIRD: [
       { pillar: 'responsabilite', text: 'Reprendre le contrôle de vos données personnelles' },

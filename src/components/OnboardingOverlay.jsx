@@ -34,10 +34,10 @@ const OnboardingOverlay = ({ onComplete }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4">
-      <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 max-w-2xl w-full border-4 border-purple-500 shadow-2xl shadow-purple-500/50 animate-fade-in">
+      <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl p-8 max-w-2xl w-full border-4 border-yellow-600 shadow-2xl shadow-yellow-500/50 animate-fade-in">
         <div className="text-center mb-6">
-          <h2 className="text-4xl font-bold text-purple-300 mb-4">{steps[step].title}</h2>
-          <p className="text-xl text-gray-200 leading-relaxed">{steps[step].content}</p>
+          <h2 className="text-4xl font-bold text-yellow-800 mb-4">{steps[step].title}</h2>
+          <p className="text-xl text-slate-700 leading-relaxed">{steps[step].content}</p>
         </div>
 
         <div className="flex justify-center gap-2 mb-6">
@@ -45,7 +45,7 @@ const OnboardingOverlay = ({ onComplete }) => {
             <div
               key={i}
               className={`h-2 w-12 rounded-full transition-colors ${
-                i === step ? 'bg-purple-500' : 'bg-gray-600'
+                i === step ? 'bg-yellow-600' : 'bg-yellow-300'
               }`}
             />
           ))}
@@ -54,13 +54,13 @@ const OnboardingOverlay = ({ onComplete }) => {
         <div className="flex justify-between">
           <button
             onClick={handleSkip}
-            className="px-6 py-2 text-gray-400 hover:text-gray-200 transition-colors"
+            className="px-6 py-2 text-slate-600 hover:text-slate-800 transition-colors"
           >
             Passer l'intro
           </button>
           <button
             onClick={handleNext}
-            className="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg transition-all transform hover:scale-105"
+            className="px-8 py-3 bg-yellow-600 hover:bg-yellow-700 text-white font-bold rounded-lg transition-all transform hover:scale-105"
           >
             {step < steps.length - 1 ? 'Suivant →' : 'C\'est parti ! 🚀'}
           </button>

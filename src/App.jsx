@@ -1,9 +1,10 @@
 // src/App.jsx
 import React, { useState, useEffect } from 'react';
 import { RoleProvider } from './contexts/RoleContext';
-import VillageMap from './components/VillageMap';
+import { MissionsProvider } from './contexts/MissionsContext';
 import RoleSelector from './components/RoleSelector';
 import OnboardingOverlay from './components/OnboardingOverlay';
+import AppRouter from './router';
 
 function App() {
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -17,13 +18,15 @@ function App() {
 
   return (
     <RoleProvider>
-      <div className="w-full h-screen bg-slate-950 overflow-hidden">
-        {showOnboarding && (
-          <OnboardingOverlay onComplete={() => setShowOnboarding(false)} />
-        )}
-        <RoleSelector />
-        <VillageMap />
-      </div>
+      <MissionsProvider>
+        <div className="w-full h-screen bg-slate-950 overflow-hidden">
+          {showOnboarding && (
+            <OnboardingOverlay onComplete={() => setShowOnboarding(false)} />
+          )}
+          <RoleSelector />
+          <AppRouter />
+        </div>
+      </MissionsProvider>
     </RoleProvider>
   );
 }

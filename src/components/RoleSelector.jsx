@@ -12,24 +12,32 @@ const RoleSelector = () => {
     { id: 'collectivite', name: 'Collectivité', emoji: '🏛️', description: 'Financeur et décideur territorial' }
   ];
 
+  // N'affiche que si pas de rôle
   if (role) return null;
 
+  const handleRoleSelect = (roleId) => {
+    setRole(roleId);
+  };
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-70 z-40 flex items-center justify-center p-4">
-      <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 max-w-4xl w-full border-4 border-orange-500 shadow-2xl">
-        <h2 className="text-3xl font-bold text-center text-orange-300 mb-6">
+    <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+      <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl p-8 max-w-4xl w-full border-4 border-yellow-600 shadow-2xl">
+        <h2 className="text-3xl font-bold text-center text-yellow-800 mb-2">
           🎭 Choisissez votre rôle dans le village
         </h2>
+        <p className="text-center text-slate-700 mb-6 text-lg">
+          Chaque rôle offre une perspective unique et des missions différentes
+        </p>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {roles.map((r) => (
             <button
               key={r.id}
-              onClick={() => setRole(r.id)}
-              className="bg-slate-700 hover:bg-slate-600 p-6 rounded-xl transition-all transform hover:scale-105 border-2 border-transparent hover:border-orange-400"
+              onClick={() => handleRoleSelect(r.id)}
+              className="bg-white hover:bg-yellow-50 p-6 rounded-xl transition-all transform hover:scale-105 border-2 border-yellow-400 hover:border-yellow-600"
             >
               <div className="text-5xl mb-3">{r.emoji}</div>
-              <div className="text-xl font-bold text-orange-200 mb-2">{r.name}</div>
-              <div className="text-sm text-gray-300">{r.description}</div>
+              <div className="text-xl font-bold text-yellow-800 mb-2">{r.name}</div>
+              <div className="text-sm text-gray-600">{r.description}</div>
             </button>
           ))}
         </div>
