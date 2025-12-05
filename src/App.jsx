@@ -1,30 +1,34 @@
-import { useState } from "react";
-import SnakeGame from "./components/SnakeGame";
+// src/App.jsx
+import React, { useState, useEffect } from 'react';
+import { RoleProvider } from './contexts/RoleContext';
+import { MissionsProvider } from './contexts/MissionsContext';
+import RoleSelector from './components/RoleSelector';
+import OnboardingOverlay from './components/OnboardingOverlay';
+import AppRouter from './router';
 
-export default function App() {
-  // État pour afficher ou non le Snake
-  const [showSnake, setShowSnake] = useState(false);
+function App() {
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
-  // Fonction pour activer le Snake (à appeler plus tard)
-  const activateSnake = () => {
-    setShowSnake(true);
-  };
+  useEffect(() => {
+    const hasSeenOnboarding = localStorage.getItem('nird-onboarding-done');
+    if (!hasSeenOnboarding) {
+      setShowOnboarding(true);
+    }
+  }, []);
 
-  // Si le Snake est activé, l'afficher
-  if (showSnake) {
-    return <SnakeGame />;
-  }
-
-  // Sinon, afficher ton contenu principal (vide pour l'instant)
   return (
-    <div>
-      {/* Ton contenu principal ici */}
-      <h1>Application principale</h1>
-
-      {/* Exemple : bouton pour tester le Snake */}
-      <button onClick={activateSnake}>
-        Activer le Snake (test)
-      </button>
-    </div>
+    <RoleProvider>
+      <MissionsProvider>
+        <div className="w-full h-screen bg-slate-950 overflow-hidden">
+          {showOnboarding && (
+            <OnboardingOverlay onComplete={() => setShowOnboarding(false)} />
+          )}
+          <RoleSelector />
+          <AppRouter />
+        </div>
+      </MissionsProvider>
+    </RoleProvider>
   );
 }
+
+export default App;
